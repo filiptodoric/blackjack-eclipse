@@ -17,6 +17,7 @@
 	function change() {
 		var card = deal();
 		index++;
+		console.dir(card);
 		$("#dealer-cards").html(card);
 	}
 </script>

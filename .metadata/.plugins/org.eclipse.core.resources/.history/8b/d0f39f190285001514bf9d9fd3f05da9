@@ -1,5 +1,5 @@
 /**
- * The logic behind anything to do with creating the deck 
+ * 
  */
 function createDeck() {
 	var newDeck = [];

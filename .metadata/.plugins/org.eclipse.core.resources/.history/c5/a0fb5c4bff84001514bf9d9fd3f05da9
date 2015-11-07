@@ -16,7 +16,6 @@
 
 	function change() {
 		var card = deal();
-		index++;
 		$("#dealer-cards").html(card);
 	}
 </script>
@@ -24,7 +23,6 @@
 <h1>Blackjack</h1>
   <div id="dealer">Dealer
   	<h3>Dealer Cards:</h3>
-  	<button onclick="change()">Deal</button>
   	<div id="dealer-cards">
   		
   	</div>
