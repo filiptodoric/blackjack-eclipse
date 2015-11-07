@@ -22,3 +22,5 @@ function shuffle(array) {
 function getDeck()	{
 	return shuffle(createDeck());
 }
+
+

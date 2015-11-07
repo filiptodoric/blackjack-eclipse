@@ -66,7 +66,6 @@
 			total = total - 10; // of 11 if the total is over 21
 			soft = soft - 1;
 		}
-		console.log(total);
 		return total;
 	}
 

@@ -1,0 +1,6 @@
+/**
+ * Game logic...
+ */
+
+var player1_hand = new Array();
+player1_hand[0] = deal();

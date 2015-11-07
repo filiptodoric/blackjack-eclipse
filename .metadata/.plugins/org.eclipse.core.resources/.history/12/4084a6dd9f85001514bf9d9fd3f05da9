@@ -24,3 +24,7 @@ function getDeck()	{
 }
 
 
+function Card(value, name) {
+	   this.value = value;
+	   this.name = name;
+	}
