@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Blackjack</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+
+	var newDeck = [];
+	var usedCards = [];
+	var deckIndex = 0;
+
+	for (var x = 0; x <= 3; x++) {
+		for (var i = 1; i < 14; i++) {
+			newDeck[deckIndex] = i;
+			deckIndex++
+		}
+	}
+
+	console.dir("Unmodified deck");
+	console.dir(newDeck);
+	function shuffle(array) {
+		for (var j, x, i = array.length; i; j = Math.floor(Math.random() * i), x = array[--i], array[i] = array[j], array[j] = x)
+			;
+		return array;
+	}
+
+	var deck = shuffle(newDeck);
+
+	console.dir("Shuffled deck");
+	console.dir(deck);
+</script>
+<body>
+<h1>Hello World</h1>
+  <div id="test"> All stuff goes here </div>
+  <button onclick="change()">Bang</button>
+</body>
+</html>
