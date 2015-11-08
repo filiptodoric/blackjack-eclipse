@@ -8,7 +8,6 @@
 <script src="../blackjack/deck.js"></script>
 <script src="../blackjack/game.js"></script>
 <script>
-	
 	var index = -1;
 	var deck = getDeck();
 
@@ -106,19 +105,25 @@
 			}
 			if(score(hand) > 21)	{
 				str = "Busted";
-				var whichPlayer = element.replace("_hand", "");
+/* 				var whichPlayer = element.replace("_hand", "");
 				var playerNum = parseInt(whichPlayer.replace("player", ""));
-				stand(whichPlayer, playerNum);
+				stand(whichPlayer, playerNum, hand); */
 			}
 			if(hand.length == 7 && score(hand) <= 21)	{
 				str = "Winner, 7-card charlie";
 				//need to disable other players because winner is found
+				$("#player1_hand").html("You lose.");
+				$("#player2_hand").html("You lose.");
+				$("#player3_hand").html("You lose.");
+				$("#dealer_hand").html("Please start a new game.");
+
 			}
 		}
 		$("#" + element).html(str);
 	}
 	
 	function start()	{
+		$("#start").prop("disabled",true);
 		while(num < 1 || num > 3)	{
 			num = prompt("Please enter the number of players.");
 		}
@@ -151,6 +156,7 @@
 		player1_hand[1] = deal();
 		dealer_hand[0] = deal();
 		dealer_hand[1] = deal();
+		$("#player1").show();	
 		var player1_stand = false;
 		display(player1_hand, "player1_hand");
 	    display(dealer_hand, "dealer_hand");
@@ -162,6 +168,7 @@
 		var playerToDisable = 'player' + playerID;
 		var playerToEnable = 'player' + (playerID + 1);
 		disable(playerToDisable);
+		hideFirstCard(playerToDisable + "_hand");
 		
 		if((playerID + 1) <= num){
 			enable(playerToEnable);
@@ -241,45 +248,93 @@
 	function hideFirstCard(element)	{
 		var str = $("#" + element).html();
 		var firstCard = str.substr(0,str.indexOf(' '));
-		str = str.replace(firstCard, "HIDDEN");
+		if (firstCard != "")	{
+			str = str.replace(firstCard, "HIDDEN");
+		}
 		$("#" + element).html(str);
 	}
 	
-	function ai(player, platerID, hand)	{
-		var currentTotal = score(hand);
-		if(currentTotal == 21)	{
-			stand(player, platerID, hand);
+	function playerHands()	{
+		var playerHands = new Array();
+		if(num == 1)	{
+			playerHands[0] = player1_hand;
+			return playerHands;
 		}
-		// if other users hand.length == 2 and hand[1] == 10 or ace
-		// hit
-		if()
-		// if currentTotal between 18 and 20
-		if()
-			// otherUser visible cards > currentTotal - 10
-			// hit
-			if()
-			// else stay
-			else()
-			
+		if(num == 2)	{
+			playerHands[0] = player1_hand;
+			playerHands[1] = player2_hand;
+			return playerHands;	
+		}
+		if (num == 3)	{
+			playerHands[0] = player1_hand;
+			playerHands[1] = player2_hand;
+			playerHands[2] = player3_hand;			
+			return playerHands;	
+		}
 	}
 	
+ 	function ai(player, playerID, hand)	{
+		var currentTotal = score(hand);
+		if(currentTotal == 21)	{
+		//	stand(player, playerID, hand);
+			return 0;
+		}
+		var otherPlayers = playerHands();
+		var numOfHands = otherPlayers.length
+		for (var x = 0; x < numOfHands; x++)	{
+			if(otherPlayers[x] != hand)	{
+				if(otherPlayers[x].length == 2 && (otherPlayers[x][1] == 1 || otherPlayers[x][1] == 10 || otherPlayers[x][1] == 11 || otherPlayers[x][1] == 12 || otherPlayers[x][1] == 13) && player == true)	{
+					hit(hand, "player" + playerID + "_hand");
+					//stand(player, playerID, hand);
+					return 0;
+				}	
+				if(currentTotal >= 18 && currentTotal <= 20)	{
+					for(var z = 1; z < numOfHands; z++)	{
+						var tempTotal = score(otherPlayers[x]) - 10
+						if(tempTotal > currentTotal)	{
+							hit(hand, "player" + playerID + "_hand");
+						//	stand(player, playerID, hand);
+							return 0;
+						}
+						else {
+							//stand(player, playerID, hand);
+							return 0;
+						}
+					}
+				}
+				else	{
+					hit(hand, "player" + playerID + "_hand");
+					return 0;
+				}
+			}
+			
+
+		}
+	}  
+	 
+	function reset()	{
+		location.reload(true);
+	}
+
 	
 </script>
 <body>
 <h1>Blackjack</h1>
-  <button onclick="start()">Play game!</button>
+  <button id="start" onclick="start()">Start round!</button>
+  <button id="reset" onclick="reset()">Reset and play a new round!</button>
+  To play a new round please click on the 'Start round!' button!
   <hr><hr>
   <div id="dealer">
-  <button onclick="dealer(dealer_hand)">Dealer</button>
   	<h3>Dealer Cards:</h3>
   	<div id="dealer_hand"></div>
   </div>
   <hr>
-  <div id="player1">
+  <div id="player1" style="display: none">
   	<h3>Player 1 Cards:</h3>
   	<div id="player1_hand"></div>
   	<button id="button1" onclick="hit(player1_hand, 'player1_hand')">Hit</button>
   	<button id="button1" onclick="stand(player1_stand, 1, player2_hand)">Stand</button>
+  	<button id="button1" onclick="ai(player1_stand, 1, player1_hand)">AI</button>
   </div>
   <hr>
   <div id="player2" style="display: none">
@@ -287,6 +342,8 @@
   	<div id="player2_hand"></div>
   	<button onclick="hit(player2_hand, 'player2_hand')">Hit</button>
   	<button onclick="stand(player2_stand, 2, player3_hand)">Stand</button>
+  	<button id="button1" onclick="ai(player2_stand, 2, player2_hand)">AI</button>
+  	
   </div>
     <hr>
   <div id="player3" style="display: none">
@@ -294,6 +351,7 @@
   	<div id="player3_hand"></div>
   	<button onclick="hit(player3_hand, 'player3_hand')">Hit</button>
   	<button onclick="stand(player3_stand, 3, player3_hand)">Stand</button>
+  	<button id="button1" onclick="ai(player3_stand, 3, player3_hand)">AI</button>
   </div>
 </body>
 </html>
