@@ -8,17 +8,21 @@
 <script src="../blackjack/deck.js"></script>
 <script src="../blackjack/game.js"></script>
 <script>
-
-
 	
 	var index = -1;
 	var deck = getDeck();
+
+	//  for scoring
+	var num = -1;
 
 	var player1_hand = new Array();
 	var player2_hand = new Array();
 	var player3_hand = new Array();
 	var dealer_hand = new Array();
-
+	
+	var player1_stand = true;
+	var player2_stand = true;
+	var player3_stand = true;
 	
 	function deal() {
 		index++
@@ -31,15 +35,6 @@
 		$("#dealer-cards").html(card);
 	}
 
-/* 	var player1_hand = new Array();
-	player1_hand[0] = deal();
-	player1_hand[1] = deal();
-
-	
-	//Dealer hand
-	var dealer_hand = new Array();
-	dealer_hand[0] = deal();
-	dealer_hand[1] = deal(); */
 	
 	function hit(hand, element) {
 		hand[hand.length] = deal();
@@ -80,16 +75,12 @@
 				hasAce = true;
 			} 
 		}
-		console.dir(hasAce);
 		if (score(dealer_hand) < 17) {
-			console.dir("< 17");
-			hit(dealer_hand);
+			hit(dealer_hand, "dealer_hand");
 		}
 		if(score(dealer_hand) == 17 && hasAce == true)	{
-			console.dir("== 17");
-			hit(dealer_hand);
+			hit(dealer_hand, "dealer_hand");
 		}
-		console.dir(dealer_hand);
 		return score(dealer_hand);
 	}
 	
@@ -98,6 +89,7 @@
 	function display(hand, element)	{
 		var str = "";
 		for(var x = 0; x < hand.length; x++)	{
+			
 			if(hand[x] == 11)	{
 				str += "Jack ";
 			}
@@ -110,15 +102,24 @@
 			if(hand[x] == 1)	{
 				str += "Ace ";
 			}
-			else if(hand[x] != 11 && hand[x] != 12 && hand[x] != 13 && hand[x] != 1)	{
+			if(hand[x] != 11 && hand[x] != 12 && hand[x] != 13 && hand[x] != 1)	{
 				str += hand[x] + " ";
+			}
+			if(score(hand) > 21)	{
+				str = "Busted";
+				var whichPlayer = element.replace("_hand", "");
+				var playerNum = parseInt(whichPlayer.replace("player", ""));
+				stand(whichPlayer, playerNum);
+			}
+			if(hand.length == 7 && score(hand) <= 21)	{
+				str = "Winner, 7-card charlie";
+				//need to disable other players because winner is found
 			}
 		}
 		$("#" + element).html(str);
 	}
 	
 	function start()	{
-		var num = -1;
 		while(num < 1 || num > 3)	{
 			num = prompt("Please enter the number of players.");
 		}
@@ -127,6 +128,8 @@
 			player2_hand[0] = deal();
 			player2_hand[1] = deal();
 			display(player2_hand, "player2_hand");
+			var player2_stand = false;
+			disable("player2");
 		}
 		if(num == 3)	{
 			$("#player2").show();
@@ -137,13 +140,102 @@
 			player3_hand[1] = deal();
 			display(player2_hand, "player2_hand");
 			display(player3_hand, "player3_hand");
+			var player2_stand = false;
+			var player3_stand = false;
+			disable("player2");
+			disable("player3");
 		}
 		player1_hand[0] = deal();
 		player1_hand[1] = deal();
 		dealer_hand[0] = deal();
 		dealer_hand[1] = deal();
+		var player1_stand = false;
 		display(player1_hand, "player1_hand");
 	    display(dealer_hand, "dealer_hand");
+	}
+	
+	function stand(player, playerID)	{
+		player = true;
+		var playerToDisable = 'player' + playerID;
+		var playerToEnable = 'player' + (playerID + 1);
+		disable(playerToDisable);
+		
+		if((playerID + 1) <= num){
+			enable(playerToEnable);
+		}
+		if((playerID + 1) > num){
+			dealer(dealer_hand);
+			checkWinner();
+		}
+	}
+	
+	function checkWinner()	{
+		var scores = new Array();	
+		var dealerScore = score(dealer_hand)
+		if(player1_stand == true && player2_stand == true && player3_stand == true)	{
+			if(num == 1)	{
+				scores[0] = score(player1_hand);
+			}
+			if(num == 2)	{
+				scores[0] = score(player1_hand);
+				scores[1] = score(player2_hand);
+			}
+			if(num == 3)	{
+				scores[0] = score(player1_hand);
+				scores[1] = score(player2_hand);
+				scores[2] = score(player3_hand);
+			}
+		}
+		for(var x = 0; x < num ; x++)	{
+			// if dealer busts and you're under 21
+			if(dealerScore > 21 && scores[x] <= 21)	{
+				var playerNum = x + 1;
+				var playerDiv = "player" + playerNum + "_hand";
+				$("#" + playerDiv).html("Winner");
+				$("#dealer_hand").html("Dealer busts.");
+				console.dir(playerDiv);
+			}
+			// if dealer isn't busted
+			if(dealerScore <= 21 && scores[x] <= 21)	{
+				// higher than dealer
+				if(scores[x] > dealerScore)	{
+					var playerNum = x + 1;
+					var playerDiv = "player" + playerNum + "_hand";
+					$("#" + playerDiv).html("Winner");
+					$("#dealer_hand").html("Dealer has " + dealerScore);
+				}
+				// tied with dealer
+				if(scores[x] == dealerScore)	{
+					var playerNum = x + 1;
+					var playerDiv = "player" + playerNum + "_hand";
+					$("#" + playerDiv).html("Push (tie)");
+					$("#dealer_hand").html("Dealer has " + dealerScore);
+				}
+				// lower than dealer
+				if(scores[x] < dealerScore)	{
+					var playerNum = x + 1;
+					var playerDiv = "player" + playerNum + "_hand";
+					$("#" + playerDiv).html("Loser");
+					$("#dealer_hand").html("Dealer has " + dealerScore);
+				}
+			}
+		}
+	}
+	
+	function disable(player)	{
+		$('#'+player).find(':input').prop('disabled', true);
+		$('#' + player +' a').click(function(e) {
+		    e.preventDefault();
+		});
+	}
+	
+	function enable(player)	{
+		$('#'+player).find(':input').prop('disabled', false);
+		$('#' + player +' a').unbind("click");
+	}
+	
+	function automate(hand)	{
+		
 	}
 	
 </script>
@@ -160,22 +252,22 @@
   <div id="player1">
   	<h3>Player 1 Cards:</h3>
   	<div id="player1_hand"></div>
-  	<button onclick="hit(player1_hand, 'player1_hand')">Hit</button>
-  	<button onclick="score(player1_hand)">Score</button>
+  	<button id="button1" onclick="hit(player1_hand, 'player1_hand')">Hit</button>
+  	<button id="button1" onclick="stand(player1_stand, 1)">Stand</button>
   </div>
   <hr>
   <div id="player2" style="display: none">
   	<h3>Player 2 Cards:</h3>
   	<div id="player2_hand"></div>
   	<button onclick="hit(player2_hand, 'player2_hand')">Hit</button>
-  	<button onclick="score(player2_hand)">Score</button>
+  	<button onclick="stand(player2_stand, 2)">Stand</button>
   </div>
     <hr>
   <div id="player3" style="display: none">
   	<h3>Player 3 Cards:</h3>
   	<div id="player3_hand"></div>
   	<button onclick="hit(player3_hand, 'player3_hand')">Hit</button>
-  	<button onclick="score(player3_hand)">Score</button>
+  	<button onclick="stand(player3_stand, 3)">Stand</button>
   </div>
 </body>
 </html>
