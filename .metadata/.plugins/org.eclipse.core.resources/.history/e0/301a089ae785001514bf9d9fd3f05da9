@@ -245,24 +245,6 @@
 		$("#" + element).html(str);
 	}
 	
-	function ai(player, platerID, hand)	{
-		var currentTotal = score(hand);
-		if(currentTotal == 21)	{
-			stand(player, platerID, hand);
-		}
-		// if other users hand.length == 2 and hand[1] == 10 or ace
-		// hit
-		if()
-		// if currentTotal between 18 and 20
-		if()
-			// otherUser visible cards > currentTotal - 10
-			// hit
-			if()
-			// else stay
-			else()
-			
-	}
-	
 	
 </script>
 <body>

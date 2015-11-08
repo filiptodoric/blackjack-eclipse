@@ -245,24 +245,6 @@
 		$("#" + element).html(str);
 	}
 	
-	function ai(player, platerID, hand)	{
-		var currentTotal = score(hand);
-		if(currentTotal == 21)	{
-			stand(player, platerID, hand);
-		}
-		// if other users hand.length == 2 and hand[1] == 10 or ace
-		// hit
-		if()
-		// if currentTotal between 18 and 20
-		if()
-			// otherUser visible cards > currentTotal - 10
-			// hit
-			if()
-			// else stay
-			else()
-			
-	}
-	
 	
 </script>
 <body>
@@ -279,14 +261,14 @@
   	<h3>Player 1 Cards:</h3>
   	<div id="player1_hand"></div>
   	<button id="button1" onclick="hit(player1_hand, 'player1_hand')">Hit</button>
-  	<button id="button1" onclick="stand(player1_stand, 1, player2_hand)">Stand</button>
+  	<button id="button1" onclick="stand(player1_stand, 1, player1_hand)">Stand</button>
   </div>
   <hr>
   <div id="player2" style="display: none">
   	<h3>Player 2 Cards:</h3>
   	<div id="player2_hand"></div>
   	<button onclick="hit(player2_hand, 'player2_hand')">Hit</button>
-  	<button onclick="stand(player2_stand, 2, player3_hand)">Stand</button>
+  	<button onclick="stand(player2_stand, 2, player2_hand)">Stand</button>
   </div>
     <hr>
   <div id="player3" style="display: none">
