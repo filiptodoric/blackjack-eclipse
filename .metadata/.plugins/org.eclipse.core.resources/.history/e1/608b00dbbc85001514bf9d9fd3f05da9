@@ -126,7 +126,6 @@
 			$("#player2").show();	
 			player2_hand[0] = deal();
 			player2_hand[1] = deal();
-			display(player2_hand, "player2_hand");
 		}
 		if(num == 3)	{
 			$("#player2").show();
@@ -135,13 +134,12 @@
 			player2_hand[1] = deal();
 			player3_hand[0] = deal();
 			player3_hand[1] = deal();
-			display(player2_hand, "player2_hand");
-			display(player3_hand, "player3_hand");
 		}
 		player1_hand[0] = deal();
 		player1_hand[1] = deal();
 		dealer_hand[0] = deal();
 		dealer_hand[1] = deal();
+		console.dir(num);
 		display(player1_hand, "player1_hand");
 	    display(dealer_hand, "dealer_hand");
 	}

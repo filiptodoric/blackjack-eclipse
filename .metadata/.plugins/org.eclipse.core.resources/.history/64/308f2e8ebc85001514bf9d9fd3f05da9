@@ -14,12 +14,6 @@
 	var index = -1;
 	var deck = getDeck();
 
-	var player1_hand = new Array();
-	var player2_hand = new Array();
-	var player3_hand = new Array();
-	var dealer_hand = new Array();
-
-	
 	function deal() {
 		index++
 		return deck[index];
@@ -31,7 +25,7 @@
 		$("#dealer-cards").html(card);
 	}
 
-/* 	var player1_hand = new Array();
+	var player1_hand = new Array();
 	player1_hand[0] = deal();
 	player1_hand[1] = deal();
 
@@ -39,7 +33,7 @@
 	//Dealer hand
 	var dealer_hand = new Array();
 	dealer_hand[0] = deal();
-	dealer_hand[1] = deal(); */
+	dealer_hand[1] = deal();
 	
 	function hit(hand, element) {
 		hand[hand.length] = deal();
@@ -123,25 +117,13 @@
 			num = prompt("Please enter the number of players.");
 		}
 		if(num == 2)	{
-			$("#player2").show();	
-			player2_hand[0] = deal();
-			player2_hand[1] = deal();
-			display(player2_hand, "player2_hand");
+			$("#player2").show();
 		}
 		if(num == 3)	{
 			$("#player2").show();
 			$("#player3").show();
-			player2_hand[0] = deal();
-			player2_hand[1] = deal();
-			player3_hand[0] = deal();
-			player3_hand[1] = deal();
-			display(player2_hand, "player2_hand");
-			display(player3_hand, "player3_hand");
 		}
-		player1_hand[0] = deal();
-		player1_hand[1] = deal();
-		dealer_hand[0] = deal();
-		dealer_hand[1] = deal();
+		console.dir(num);
 		display(player1_hand, "player1_hand");
 	    display(dealer_hand, "dealer_hand");
 	}

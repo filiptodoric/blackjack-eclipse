@@ -142,6 +142,7 @@
 		player1_hand[1] = deal();
 		dealer_hand[0] = deal();
 		dealer_hand[1] = deal();
+		console.dir(num);
 		display(player1_hand, "player1_hand");
 	    display(dealer_hand, "dealer_hand");
 	}
