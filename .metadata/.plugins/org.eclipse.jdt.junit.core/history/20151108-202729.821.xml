@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="AllTests" project="FunctionalTest" tests="3" started="3" failures="0" errors="0" ignored="0">
+  <testsuite name="com.example.tests.AllTests" time="16.901">
+    <testsuite name="com.example.tests.TestClass1" time="5.615">
+      <testcase name="testClass1" classname="com.example.tests.TestClass1" time="5.615"/>
+    </testsuite>
+    <testsuite name="com.example.tests.TestClass2" time="5.483">
+      <testcase name="testClass2" classname="com.example.tests.TestClass2" time="5.483"/>
+    </testsuite>
+    <testsuite name="com.example.tests.TestClass3" time="5.803">
+      <testcase name="testClass3" classname="com.example.tests.TestClass3" time="5.803"/>
+    </testsuite>
+  </testsuite>
+</testrun>
