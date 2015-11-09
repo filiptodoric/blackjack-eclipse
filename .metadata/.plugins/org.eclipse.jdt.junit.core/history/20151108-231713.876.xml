@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="TestClass8" project="FunctionalTest" tests="1" started="1" failures="0" errors="0" ignored="0">
-  <testsuite name="com.example.tests.TestClass8" time="4.615">
-    <testcase name="testClass8" classname="com.example.tests.TestClass8" time="4.615"/>
-  </testsuite>
-</testrun>
