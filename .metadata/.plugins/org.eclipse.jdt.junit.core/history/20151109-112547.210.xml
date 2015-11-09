@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="SeleniumTestSuite" project="FunctionalTest" tests="10" started="3" failures="0" errors="0" ignored="0">
+  <testsuite name="com.example.tests.SeleniumTestSuite" incomplete="true">
+    <testsuite name="com.example.tests.TestClass1" time="5.977">
+      <testcase name="testClass1" classname="com.example.tests.TestClass1" time="5.976"/>
+    </testsuite>
+    <testsuite name="com.example.tests.TestClass10" time="3.999">
+      <testcase name="testClass10" classname="com.example.tests.TestClass10" time="3.999"/>
+    </testsuite>
+    <testsuite name="com.example.tests.TestClass2" time="5.099">
+      <testcase name="testClass2" classname="com.example.tests.TestClass2" time="5.099"/>
+    </testsuite>
+    <testsuite name="com.example.tests.TestClass3" incomplete="true">
+      <testcase name="testClass3" classname="com.example.tests.TestClass3" incomplete="true"/>
+    </testsuite>
+    <testsuite name="com.example.tests.TestClass4" incomplete="true">
+      <testcase name="testClass4" classname="com.example.tests.TestClass4" incomplete="true"/>
+    </testsuite>
+    <testsuite name="com.example.tests.TestClass5" incomplete="true">
+      <testcase name="testClass5" classname="com.example.tests.TestClass5" incomplete="true"/>
+    </testsuite>
+    <testsuite name="com.example.tests.TestClass6" incomplete="true">
+      <testcase name="testClass6" classname="com.example.tests.TestClass6" incomplete="true"/>
+    </testsuite>
+    <testsuite name="com.example.tests.TestClass7" incomplete="true">
+      <testcase name="testClass7" classname="com.example.tests.TestClass7" incomplete="true"/>
+    </testsuite>
+    <testsuite name="com.example.tests.TestClass8" incomplete="true">
+      <testcase name="testClass8" classname="com.example.tests.TestClass8" incomplete="true"/>
+    </testsuite>
+    <testsuite name="com.example.tests.TestClass9" incomplete="true">
+      <testcase name="testClass9" classname="com.example.tests.TestClass9" incomplete="true"/>
+    </testsuite>
+  </testsuite>
+</testrun>

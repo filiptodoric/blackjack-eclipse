@@ -1,0 +1,8 @@
+Feature: Player's can use AI
+
+Background:
+	Given Game is running
+	
+Scenario: Let AI handle user behaviour
+	When Player hits and total is over 21
+	Then Player busts

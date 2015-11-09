@@ -1,0 +1,12 @@
+Feature: Start Game
+
+Background:
+	Given I open "firefox"
+	Given I visit "http://localhost:8080/blackjack/"
+	
+Scenario: Search for Bruce Lee
+	When I enter "Bruce Lee" into the "gbqfq" field
+	Then I should see the "Google" title
+	Then I click on the "Bruce Lee - Wikipedia, the free encyclopedia" link
+	Then I should see the "Bruce Lee" text
+	

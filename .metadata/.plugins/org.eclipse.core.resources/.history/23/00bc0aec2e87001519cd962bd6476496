@@ -1,0 +1,10 @@
+Feature: Can play games after each other
+
+Background:
+	Given Game is running
+	
+Scenario: 
+	When Clicks on reset 
+	When Clicks on Play Game
+	Then Game is running
+	

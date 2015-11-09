@@ -1,0 +1,43 @@
+Feature: 7 Card Charlie is a auto win
+
+Background:
+	Given I open "firefox"
+	Given I visit "http://localhost:8080/blackjack/"
+	Given Game is running
+	
+Scenario: Player has 6 cards
+	When I click the "hit" button for player1
+	Then A winner is declared
+	
+
+
+
+
+driver.get(baseUrl + "/blackjack/");
+    sendAlert();
+    String javascriptCMD = "for(var i = 0; i < 6; i++)	{player1_hand[i] = 1;}";
+    
+    if (driver instanceof JavascriptExecutor) {
+    	((JavascriptExecutor) driver)
+    	.executeScript(javascriptCMD);
+    }
+  
+    
+    
+    driver.findElement(By.id("player1-hit")).click();
+    try {
+      assertEquals("Winner, 7-card charlie", driver.findElement(By.id("player1_hand")).getText());
+    } catch (Error e) {
+      verificationErrors.append(e.toString());
+    }
+    try {
+      assertEquals("Please start a new game.", driver.findElement(By.id("dealer_hand")).getText());
+    } catch (Error e) {
+      verificationErrors.append(e.toString());
+    }
+    try {
+      assertEquals("You lose.", driver.findElement(By.id("player2_hand")).getText());
+    } catch (Error e) {
+      verificationErrors.append(e.toString());
+    }
+  }

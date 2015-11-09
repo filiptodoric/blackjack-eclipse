@@ -1,0 +1,70 @@
+package com.bdt.webdriver;
+
+import java.util.concurrent.TimeUnit;
+
+import org.junit.*;
+import org.openqa.selenium.*;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import cucumber.api.PendingException;
+import cucumber.api.java.en.When;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.Given;
+
+public class StepDef extends CukeRunner {
+
+	private WebDriver driver;
+	private String baseUrl;
+	private boolean acceptNextAlert = true;
+	private StringBuffer verificationErrors = new StringBuffer();
+
+	@Given("^I open \"(.*?)\"$")
+	public void i_open(String arg1) {
+		driver = new FirefoxDriver();
+		baseUrl = "http://localhost:8080/";
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		System.out.println(arg1);
+		driver.get(baseUrl + "/blackjack/");
+		String promptAnswer = "3";
+		Alert alert = driver.switchTo().alert();
+		alert.sendKeys(promptAnswer);
+		alert.accept();
+		driver.findElement(By.id("player1-ai")).click();
+		driver.findElement(By.id("player1-stand")).click();
+		driver.findElement(By.id("player2-hit")).click();
+		driver.findElement(By.id("player2-stand")).click();
+		driver.findElement(By.id("player3-ai")).click();
+		driver.findElement(By.id("player3-stand")).click();
+
+	}
+
+	@When("^I enter click the \"(.*?)\" button$")
+	public void i_enter_click_the_button(String arg1) throws Throwable {
+	    driver.findElement(By.id("start")).click();
+		throw new PendingException();
+	}
+
+	@Then("^I should see the alert pop up$")
+	public void i_should_see_the_alert_pop_up() throws Throwable {
+		System.out.println("Alert pop up.");
+		throw new PendingException();
+	}
+
+	@Then("^I type \"(.*?)\"$")
+	public void i_type(String arg1) throws Throwable {
+	    String promptAnswer = "2";
+	    Alert alert = driver.switchTo().alert();
+	    alert.sendKeys(promptAnswer);
+	    alert.accept();
+		throw new PendingException();
+	}
+
+	@Then("^I should see the \"(.*?)\" div$")
+	public void i_should_see_the_div(String arg1) throws Throwable {
+		// Write code here that turns the phrase above into concrete actions
+		throw new PendingException();
+	}
+
+
+
+}
