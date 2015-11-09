@@ -1,0 +1,17 @@
+127.0.0.1 - - [09/Nov/2015:01:59:05 -0500] "GET / HTTP/1.1" 404 951
+0:0:0:0:0:0:0:1 - - [09/Nov/2015:01:59:05 -0500] "GET /WebApp5/WEB-INF/classes/cucumber/features/error-ti1.feature HTTP/1.1" 404 949
+0:0:0:0:0:0:0:1 - - [09/Nov/2015:01:59:26 -0500] "GET /WebApp5/WEB-INF/classes/cucumber/features/StepDefinitions.java HTTP/1.1" 404 949
+127.0.0.1 - - [09/Nov/2015:02:00:12 -0500] "GET / HTTP/1.1" 404 951
+0:0:0:0:0:0:0:1 - - [09/Nov/2015:02:00:13 -0500] "GET /blackjack/ HTTP/1.1" 200 9317
+0:0:0:0:0:0:0:1 - - [09/Nov/2015:02:02:39 -0500] "GET //blackjack/ HTTP/1.1" 200 9317
+0:0:0:0:0:0:0:1 - - [09/Nov/2015:02:02:39 -0500] "GET //blackjack/deck.js HTTP/1.1" 200 509
+0:0:0:0:0:0:0:1 - - [09/Nov/2015:02:02:39 -0500] "GET //blackjack/game.js HTTP/1.1" 200 147
+0:0:0:0:0:0:0:1 - - [09/Nov/2015:02:02:40 -0500] "GET /favicon.ico HTTP/1.1" 404 973
+0:0:0:0:0:0:0:1 - - [09/Nov/2015:02:02:40 -0500] "GET /favicon.ico HTTP/1.1" 404 973
+0:0:0:0:0:0:0:1 - - [09/Nov/2015:02:02:44 -0500] "GET //blackjack/ HTTP/1.1" 200 9317
+0:0:0:0:0:0:0:1 - - [09/Nov/2015:02:02:44 -0500] "GET //blackjack/deck.js HTTP/1.1" 200 509
+0:0:0:0:0:0:0:1 - - [09/Nov/2015:02:02:44 -0500] "GET //blackjack/game.js HTTP/1.1" 200 147
+0:0:0:0:0:0:0:1 - - [09/Nov/2015:02:02:44 -0500] "GET /favicon.ico HTTP/1.1" 404 973
+0:0:0:0:0:0:0:1 - - [09/Nov/2015:02:02:44 -0500] "GET /favicon.ico HTTP/1.1" 404 973
+127.0.0.1 - - [09/Nov/2015:03:10:34 -0500] "GET / HTTP/1.1" 404 951
+0:0:0:0:0:0:0:1 - - [09/Nov/2015:03:10:35 -0500] "GET /WebApp5/WEB-INF/classes/cucumber/CucumberRunner.java HTTP/1.1" 404 949

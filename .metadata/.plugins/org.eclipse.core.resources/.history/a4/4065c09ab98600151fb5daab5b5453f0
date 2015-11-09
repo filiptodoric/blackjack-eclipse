@@ -1,0 +1,16 @@
+package cucumber;
+
+import org.junit.runner.RunWith;
+
+import cucumber.junit.Cucumber;
+import cucumber.runtime.io.*;
+
+
+@RunWith(Cucumber.class)
+@Cucumber.Options(
+		format = {"pretty", "json:target/"},
+		features = {"src/cucumber/features/"}
+		)
+public class CucumberRunner {
+
+}
