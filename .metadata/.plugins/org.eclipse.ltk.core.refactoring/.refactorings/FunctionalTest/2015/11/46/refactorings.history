@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move &apos;selenium-java-2.48.2-srcs.jar, selenium-java-2.48.2.jar&apos; to &apos;lib&apos;" description="Move 2 resources to &apos;lib&apos;" destination="lib" element1="/blackjack/lib/selenium-java-2.48.2-srcs.jar" element2="/blackjack/lib/selenium-java-2.48.2.jar" flags="7" id="org.eclipse.ltk.core.refactoring.move.resources" resources="2" stamp="1447025877832" updateReferences="true"/>
+</session>
